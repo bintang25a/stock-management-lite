@@ -39,15 +39,17 @@ export class Food extends Product {
 
 // Logika Bisnis Utama: Menerapkan Array, Fungsi, dan Penyimpanan
 export class StockManager {
+  #API_URL;
+
   constructor() {
-    this.API_URL = "/api/products";
+    this.#API_URL = "/api/products";
     this.idGenerator = 1;
     this.loadProducts(); // Menerapkan Fasilitas Membaca Data
   } // Fungsi untuk menambah produk baru
 
   async addProduct(newProduct) {
     // Hapus logika idGenerator dan this.products.push
-    const response = await fetch(this.API_URL, {
+    const response = await fetch(this.#API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct),
@@ -76,7 +78,7 @@ export class StockManager {
   }
 
   async loadProducts() {
-    const response = await fetch(this.API_URL);
+    const response = await fetch(this.#API_URL);
 
     if (!response.ok) {
       throw new Error("Gagal memuat data dari API.");

@@ -66,7 +66,7 @@ export class StockManager {
       return;
     }
 
-    const response = await fetch(`/api/products/${productId}`, {
+    const response = await fetch(`${this.#API_URL}/${productId}`, {
       method: "DELETE",
     });
 
